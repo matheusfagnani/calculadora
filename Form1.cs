@@ -43,6 +43,7 @@ namespace calculadora
             ClientSize = new Size(1253, 545);
             Controls.Add(progressBar1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             ResumeLayout(false);
