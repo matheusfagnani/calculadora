@@ -12,9 +12,11 @@ namespace calculadora
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label1 = new Label();
             progressBar1 = new ProgressBar();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // label1
@@ -36,6 +38,11 @@ namespace calculadora
             progressBar1.Size = new Size(1253, 24);
             progressBar1.TabIndex = 1;
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Tick += timer1_Tick;
+            // 
             // Form1
             // 
             BackgroundImage = Properties.Resources.bcad8eae58f5ecff3ef037795bf90c262ae7e230v2_hq;
@@ -46,8 +53,33 @@ namespace calculadora
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private System.Windows.Forms.Timer timer1;
+        private System.ComponentModel.IContainer components;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            InitializeComponent();
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            timer1.Start();
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (progressBar1.Value < progressBar1.Maximum)
+            {
+                progressBar1.Value += 10;
+            }
+            else
+            {
+                timer1.Start();
+            }
         }
     }
 }
